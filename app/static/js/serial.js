@@ -41,7 +41,7 @@ var serial_lib=(function() {
   }
 
   var checkDataFromSerial=function(callback) {
-    if (connectionInfo) chrome.serial.read(connectionInfo.connectionId, callback);
+    if (connectionInfo) chrome.serial.read(connectionInfo.connectionId, 24, callback);
   }
 
   var flush=function(callback) {

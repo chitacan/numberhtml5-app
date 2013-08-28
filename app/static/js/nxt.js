@@ -180,7 +180,7 @@ window.Robot=(function() {
       callback();
       return;
     }
-    chrome.experimental.serial.read(cInfo.connectionId, function() {
+    chrome.serial.read(cInfo.connectionId, 24, function() {
       flushStaleInput(cInfo, callback, startTime);
     });
     

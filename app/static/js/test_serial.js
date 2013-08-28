@@ -1,7 +1,7 @@
 var port = "/dev/tty.bluetooth-Bailey";
 
 var init = function() {
-  chrome.experimental.serial.open(port, function(cInfo) {
+  chrome.serial.open(port, function(cInfo) {
     startReading(cInfo);
   });
 }
@@ -15,7 +15,7 @@ var startReading = function(cInfo) {
 }
 
 var read = function(cInfo) {
-  chrome.experimental.serial.read(cInfo.connectionId, function(data) {
+  chrome.serial.read(cInfo.connectionId, 24, function(data) {
     bytesRead+=data.bytesRead;
     var elapsed=Date.now-startTime;
     if (elapsed<20000) {
