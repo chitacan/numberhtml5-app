@@ -2,7 +2,7 @@
   "name": "Lego NXT demo - App",
   "version": "1.0",
   "permissions": [
-    "experimental", "usb"
+    "experimental", "usb", "serial"
   ],
   "app": {
     "background": {
