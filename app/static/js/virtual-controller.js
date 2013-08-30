@@ -7,32 +7,39 @@ var VirtualController = function(options) {
 
   var joystick = new VirtualJoystick({
     container: document.getElementById('status'),
-    mouseSupport: true
   });
 
-  var update = function() {
-    var stick = [joystick.deltaX(), joystick.deltaY()];
+  var sendResult = function(vertical, horizontal) {
+    if (Math.abs(lastV - vertical) > 5) {
+      options.OnVertical(vertical);
+      lastV = vertical;
+      console.log('ver : ' + vertical);
+    }
 
-    var vertical   = Math.floor(stick[1] * 100);
-    var horizontal = Math.floor(stick[0] * 100);
+    if (Math.abs(lastH - horizontal) > 5) {
+      options.OnHorizontal(horizontal);
+      lastH = horizontal;
+      console.log('hor : ' + horizontal);
+    }
+  }
+
+  var update = function() {
+    var vertical   = joystick.deltaX() * 10;
+    var horizontal = joystick.deltaY() * 10;
 
     vertical   = vertical   - (vertical   % 5);
     horizontal = horizontal - (horizontal % 5);
 
-    if (vertical   < 10 && vertical   > -10) vertical   = 0;
-    if (horizontal < 10 && horizontal > -10) horizontal = 0;
-
-    if (Math.abs(lastV - vertical) > 10) {
-      options.OnVertical(vertical);
-      lastV = vertical;
-      console.log('vertical : ' + vertical);
+    if (vertical == 0 && horizontal == 0) {
+      sendResult(0, 0);
     }
 
-    if (Math.abs(lastH - horizontal) > 10) {
-      options.OnVertical(horizontal);
-      lastV = horizontal;
-      console.log('horizontal' + horizontal);
+    if (joystick.up()) {
+      sendResult(vertical, vertical);
+    } else if (joystick.down()) {
+      sendResult(vertical, vertical);
     }
+
 
     frameID = window.webkitRequestAnimationFrame(update);
   }
