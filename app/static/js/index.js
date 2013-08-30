@@ -60,7 +60,6 @@ window.addEventListener("load", function() {
     updateState("gamepad", false);
   }
 
-  // var controller = new Controller(params);
-  var controller = new VirtualController();
+  var controller = new VirtualController(params);
   
 }, false);
