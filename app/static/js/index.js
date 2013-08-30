@@ -1,4 +1,6 @@
 window.addEventListener("load", function() {
+  window.robot = new HTML5Robot();
+
   var panel = document.getElementById("panel");
   var status = document.getElementById("status");
   var robotSelect = document.getElementById("devices");
@@ -58,6 +60,7 @@ window.addEventListener("load", function() {
     updateState("gamepad", false);
   }
 
-  var controller = new Controller(params);
+  // var controller = new Controller(params);
+  var controller = new VirtualController();
   
 }, false);
