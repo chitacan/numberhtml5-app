@@ -6,7 +6,7 @@ var VirtualController = function(options) {
   var self = this;
 
   var joystick = new VirtualJoystick({
-    container: document.getElementById('status'),
+    container: document.getElementById('container'),
   });
 
   var sendResult = function(vertical, horizontal) {
@@ -24,26 +24,29 @@ var VirtualController = function(options) {
   }
 
   var update = function() {
-    var vertical   = joystick.deltaX() * 10;
-    var horizontal = joystick.deltaY() * 10;
+    var vertical   = joystick.deltaY() * -1;
+    var horizontal = joystick.deltaX();
+    
+    if (vertical == 0 && horizontal == 0) {
+      sendResult(0, 0);
+      frameID = window.webkitRequestAnimationFrame(update);
+      return;
+    }
 
     vertical   = vertical   - (vertical   % 5);
     horizontal = horizontal - (horizontal % 5);
 
-    if (vertical == 0 && horizontal == 0) {
-      sendResult(0, 0);
-    }
-
-    if (joystick.up()) {
+    if (joystick.up() || joystick.down()) {
       sendResult(vertical, vertical);
-    } else if (joystick.down()) {
-      sendResult(vertical, vertical);
+    } else if (joystick.left()) {
+      sendResult(horizontal * -1, horizontal);
+    } else if (joystick.right()) {
+      sendResult(horizontal * -1, horizontal);
     }
 
 
     frameID = window.webkitRequestAnimationFrame(update);
   }
   frameID = window.requestAnimationFrame(update);
-
   this.update = update;
 }

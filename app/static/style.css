@@ -35,6 +35,14 @@ h1 {
   padding: 0; margin:0;
 }
 
+#container {
+  display:block;
+  height:300px;
+  margin: 10px;
+  background-color: white;
+  z-index: 100;
+}
+
 p {
   font-family: 'Roboto';
   color: white;
