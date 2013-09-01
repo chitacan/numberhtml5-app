@@ -1,7 +1,7 @@
 window.addEventListener("load", function() {
   window.robot = new HTML5Robot();
 
-  var panel = document.getElementById("panel");
+  // var panel = document.getElementById("panel");
   var status = document.getElementById("status");
   var robotSelect = document.getElementById("devices");
   var _x=0;
@@ -34,13 +34,13 @@ window.addEventListener("load", function() {
    
   params.OnVertical = function(x) {
     _x = x;
-    panel.style.webkitTransform = "rotate3d(1, 0, 0, " + _x/10 + "deg) rotate3d(0, 1, 0, " + _y/10 + "deg)";
+    // panel.style.webkitTransform = "rotate3d(1, 0, 0, " + _x/10 + "deg) rotate3d(0, 1, 0, " + _y/10 + "deg)";
     robot.move(_x, _y); 
   };
 
   params.OnHorizontal = function(y) {
     _y = y;
-    panel.style.webkitTransform = "rotate3d(1, 0, 0, " + _x/10 + "deg) rotate3d(0, 1, 0, " + _y/10 + "deg)";
+    // panel.style.webkitTransform = "rotate3d(1, 0, 0, " + _x/10 + "deg) rotate3d(0, 1, 0, " + _y/10 + "deg)";
     robot.move(_x, _y); 
   };
 
