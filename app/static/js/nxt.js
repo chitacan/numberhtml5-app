@@ -27,7 +27,7 @@ window.Robot=(function() {
   var btnStop=document.querySelector(".stop");
   var btnForward=document.querySelector(".forward");
   var logArea=document.querySelector(".log");
-  var statusLine=document.querySelector("#statusLine");
+  // var statusLine=document.querySelector("#statusLine");
   
   var logObj=function(obj) {
     console.log(obj);
@@ -36,14 +36,14 @@ window.Robot=(function() {
     log("<span style='color: green;'>"+msg+"</span>");
   };
   var logError=function(msg) {
-    statusLine.className="error";
-    statusLine.textContent=msg;
+    // statusLine.className="error";
+    // statusLine.textContent=msg;
     log("<span style='color: red;'>"+msg+"</span>");
   }
 
   var log=function(msg) {
     console.log(msg);
-    logArea.innerHTML=msg+"<br/>"+logArea.innerHTML;
+    // logArea.innerHTML=msg+"<br/>"+logArea.innerHTML;
   }
   
   var sensorReaderInterval;
@@ -68,21 +68,21 @@ window.Robot=(function() {
   var init=function() {
     if (typeof(serial_lib) === 'undefined') throw "You must include serial.js before";
 
-    flipState(true);
-    btnClose.addEventListener("click", closeSerial);
-    btnForward.addEventListener("click", forward);
-    btnStop.addEventListener("click", stop);
+    // flipState(true);
+    // btnClose.addEventListener("click", closeSerial);
+    // btnForward.addEventListener("click", forward);
+    // btnStop.addEventListener("click", stop);
     
-    document.querySelector(".read1").addEventListener("click", function() { 
-        // port 0: light - percent of full scale
-        setInputPort(0, 3, 0x00);
-        // port 1: 
-        // port 2: sound DBa - percent of full scale
-        setInputPort(2, 7, 0x80);
-        // port 3: switch - boolean
-        setInputPort(3, 1, 0x00);
-        startSensorReader();
-    });
+    // document.querySelector(".read1").addEventListener("click", function() { 
+    //     // port 0: light - percent of full scale
+    //     setInputPort(0, 3, 0x00);
+    //     // port 1: 
+    //     // port 2: sound DBa - percent of full scale
+    //     setInputPort(2, 7, 0x80);
+    //     // port 3: switch - boolean
+    //     setInputPort(3, 1, 0x00);
+    //     startSensorReader();
+    // });
   }
 
   var onSensor=function(sensorType, context, callback) {
@@ -170,7 +170,7 @@ window.Robot=(function() {
       logError("Invalid serialPort");
       return;
     }
-    flipState(true);
+    // flipState(true);
     log("Connecting to "+serialPort);
     serial_lib.openSerial(serialPort, _callback);
   }
@@ -188,8 +188,8 @@ window.Robot=(function() {
 
   var onOpen=function(cInfo) {
       logSuccess("Device found (connectionId="+cInfo.connectionId+")");
-      flipState(false);
-      statusLine.textContent="Connected";
+      // flipState(false);
+      // statusLine.textContent="Connected";
       log("started listener");
       serial_lib.startListening(function(data) {
         onSensorRawData(data);
@@ -253,7 +253,7 @@ console.log("sensor "+sensor+" value1="+value1+" data="+rawData);
   }
   
   var onClose = function(result) {
-   flipState(true);
+   // flipState(true);
   }
   
   
