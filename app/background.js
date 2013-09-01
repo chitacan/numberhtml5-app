@@ -1,3 +1,3 @@
 chrome.app.runtime.onLaunched.addListener(function() {
-  chrome.app.window.create("static/index.html", {width:1164, height: 825});
+  chrome.app.window.create("static/index.html", {left:0, top:0, width:720, height: 900});
 });
